@@ -70,6 +70,12 @@ $this->menu=array(
 						<td colspan="3"></td>
 						<td><?php echo $l+1?></td>
 						<td colspan="5"><?php echo $butir->nama?></td>
+						<td><input type="text" size="2"/></td>
+						<td><input type="text" size="2"/></td>
+						<td><input type="text" size="2"/></td>
+						<td><input type="text" size="2"/></td>
+						<td><input type="text" size="2"/></td>
+						<td><input type="text" size="2"/></td>
 					</tr>
 				<?php endforeach?>
 			<?php endforeach?>

@@ -66,6 +66,8 @@ class DupakController extends Controller
 	 */
 	public function actionCreate()
 	{
+		if(!isset($_SESSION['KenaikanJabatan']))
+			$this->redirect(array('kenaikanJabatan/create'));
 		$model=new Dupak;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -89,6 +91,8 @@ class DupakController extends Controller
 	
 	public function actionIsiNilai()
 	{
+		if(!isset($_SESSION['Dupak']))
+			$this->redirect(array('dupak/create'));
 		$dupak = $_SESSION['Dupak'];
 		$unsurs = Unsur::model()->findByDupak($dupak);
 		$this->render('isiNilai',array(
