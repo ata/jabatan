@@ -57,6 +57,7 @@ class Dupak extends CActiveRecord
 		return array(
 			'kenaikanJabatan' => array(self::BELONGS_TO,'KenaikanJabatan','kenaikan_jabatan_id'),
 			'jenis' => array(self::BELONGS_TO, 'JenisDupak','jenis_dupak_id'),
+			//'nilais' => array(self::HAS_MANY,'Nilai','dupak_id')
 		);
 	}
 
@@ -83,6 +84,7 @@ class Dupak extends CActiveRecord
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
+		
 
 		$criteria=new CDbCriteria;
 
@@ -102,4 +104,6 @@ class Dupak extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	
 }

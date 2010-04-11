@@ -1,14 +1,4 @@
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-    'id'=>'dupak-form',
-    'enableAjaxValidation'=>false,
-)); ?>
-
-    
-    
-    
-    <?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('zii.widgets.CDetailView', array(
         'data'=>$model->kenaikanJabatan->pegawai,
         'attributes'=>array(
             'id',
@@ -22,7 +12,13 @@
             'jabatan',
         ),
     )); ?>
-    
+
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+    'id'=>'dupak-form',
+    'enableAjaxValidation'=>false,
+)); ?>
     <p class="note">Fields with <span class="required">*</span> are required.</p>
     
     <?php echo $form->errorSummary($model); ?>
@@ -44,13 +40,9 @@
         <?php echo $form->textField($model,'mp_selesai',array('size'=>60,'maxlength'=>255)); ?>
         <?php echo $form->error($model,'mp_selesai'); ?>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'kenaikan_jabatan_id'); ?>
-        <?php echo $form->textField($model,'kenaikan_jabatan_id'); ?>
-        <?php echo $form->error($model,'kenaikan_jabatan_id'); ?>
-    </div>
-
+    
+    <?php echo $form->hiddenField($model,'kenaikan_jabatan_id'); ?>
+    
     <div class="row">
         <?php echo $form->labelEx($model,'jenis_dupak_id'); ?>
         <?php echo $form->dropDownList($model,'jenis_dupak_id', CHtml::listData(JenisDupak::model()->findAll(),'id', 'nama')); ?>

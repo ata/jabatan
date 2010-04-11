@@ -56,6 +56,7 @@ class Nilai extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			
 		);
 	}
 
@@ -109,5 +110,19 @@ class Nilai extends CActiveRecord
 		return new CActiveDataProvider('Nilai', array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function saveAll($nilais,$dupak_id)
+	{
+		foreach($nilais as $n){
+			$nilai = new Nilai;
+			$nilai->attributes = $n;
+			$nilai->dupak_id = $dupak_id;
+			var_dump($nilai->attributes);
+			if(!$nilai->save()){
+				return false;
+			}
+		}
+		return true;
 	}
 }

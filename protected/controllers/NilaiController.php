@@ -1,6 +1,6 @@
 <?php
 
-class DupakController extends Controller
+class NilaiController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to 'column2', meaning
@@ -28,7 +28,6 @@ class DupakController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	
 	public function accessRules()
 	{
 		return array(
@@ -41,7 +40,7 @@ class DupakController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','isiNilai'),
+				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -66,28 +65,31 @@ class DupakController extends Controller
 	 */
 	public function actionCreate()
 	{
-		if(!isset($_SESSION['KenaikanJabatan']))
-			$this->redirect(array('kenaikanJabatan/create'));
-		$model=new Dupak;
+		if(!isset($_SESSION['Dupak']))
+			$this->redirect(array('dupak/create'));
+		$dupak = $_SESSION['Dupak'];
+		$nilai = new Nilai;
 		
-		$model->kenaikanJabatan = $_SESSION['KenaikanJabatan'];
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		
-		if(isset($_POST['Dupak']))
-		{
-			$model->attributes=$_POST['Dupak'];
-			$_SESSION['Dupak'] = $model;
-			$this->redirect(array('nilai/create'));
+		if(isset($_POST['Nilai'])){
+			
+			$_SESSION['Nilai'] = $_POST['Nilai'];
+			/*
+			if($dupak->kenaikanJabatan->save()){
+				$dupak->kenaikan_jabatan_id = $dupak->kenaikanJabatan->id;
+				if($dupak->save()){
+					Nilai::model()->saveAll($_POST['Nilai'],$dupak->id);
+				}
+			}
+			*/
+			
 		}
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
-	
-	public function actionIsiNilai()
-	{
 		
+		$unsurs = Unsur::model()->findByDupak($dupak);
+		$this->render('create',array(
+			'dupak' => $dupak,
+			'unsurs' => $unsurs,
+			'nilai' => $nilai
+		));
 	}
 
 	/**
@@ -101,9 +103,9 @@ class DupakController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Dupak']))
+		if(isset($_POST['Nilai']))
 		{
-			$model->attributes=$_POST['Dupak'];
+			$model->attributes=$_POST['Nilai'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -137,7 +139,7 @@ class DupakController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Dupak');
+		$dataProvider=new CActiveDataProvider('Nilai');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -148,9 +150,9 @@ class DupakController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Dupak('search');
-		if(isset($_GET['Dupak']))
-			$model->attributes=$_GET['Dupak'];
+		$model=new Nilai('search');
+		if(isset($_GET['Nilai']))
+			$model->attributes=$_GET['Nilai'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -166,7 +168,7 @@ class DupakController extends Controller
 		if($this->_model===null)
 		{
 			if(isset($_GET['id']))
-				$this->_model=Dupak::model()->findbyPk($_GET['id']);
+				$this->_model=Nilai::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
 		}
@@ -179,7 +181,7 @@ class DupakController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='dupak-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='nilai-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

@@ -227,3 +227,8 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+table#formNilaiDupak th{
+	text-align:center;
+}
+
