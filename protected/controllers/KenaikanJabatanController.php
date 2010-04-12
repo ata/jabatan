@@ -73,14 +73,8 @@ class KenaikanJabatanController extends Controller
         if(isset($_POST['KenaikanJabatan']))
         {
             $model->attributes=$_POST['KenaikanJabatan'];
-            
-            //if($model->save()){
-                $_SESSION['KenaikanJabatan'] = $model;
-                $this->redirect(array('dupak/create'));
-            //}
-            
-            //if($model->save())
-            //    $this->redirect(array('view','id'=>$model->id));
+            $_SESSION['KenaikanJabatan'] = $model;
+            $this->redirect(array('kti/create'));
             
         }
 
