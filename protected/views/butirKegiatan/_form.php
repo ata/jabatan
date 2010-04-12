@@ -1,5 +1,6 @@
 <div class="form">
 
+
 <?php $form=$this->beginWidget('CActiveForm', array(
     'id'=>'butir-kegiatan-form',
     'enableAjaxValidation'=>false,
@@ -17,7 +18,7 @@
 
     <div class="row">
         <?php echo $form->labelEx($model,'kegiatan_id'); ?>
-        <?php echo $form->dropDownList($model,'kegiatan_id', CHtml::listData(Kegiatan::model()->findAll(),'id','nama')); ?>
+        <?php echo $form->dropDownList($model,'kegiatan_id', CHtml::listData(Kegiatan::model()->findAll(),'id','optionKegiatan')); ?>
         <?php echo $form->error($model,'kegiatan_id'); ?>
     </div>
 

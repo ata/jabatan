@@ -5,7 +5,6 @@ class Kti extends CActiveRecord
 	/**
 	 * The followings are the available columns in table 'kti':
 	 * @var double $id
-	 * @var string $nama
 	 * @var double $kenaikan_jabatan_id
 	 * @var double $dupak_id
 	 */
@@ -37,10 +36,9 @@ class Kti extends CActiveRecord
 		return array(
 			array('kenaikan_jabatan_id, dupak_id', 'required'),
 			array('kenaikan_jabatan_id, dupak_id', 'numerical'),
-			array('nama', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, nama, kenaikan_jabatan_id, dupak_id', 'safe', 'on'=>'search'),
+			array('id, kenaikan_jabatan_id, dupak_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +60,6 @@ class Kti extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'nama' => 'Nama',
 			'kenaikan_jabatan_id' => 'Kenaikan Jabatan',
 			'dupak_id' => 'Dupak',
 		);
@@ -80,8 +77,6 @@ class Kti extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-
-		$criteria->compare('nama',$this->nama,true);
 
 		$criteria->compare('kenaikan_jabatan_id',$this->kenaikan_jabatan_id);
 

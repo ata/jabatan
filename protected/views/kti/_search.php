@@ -11,11 +11,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'nama'); ?>
-		<?php echo $form->textField($model,'nama',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'kenaikan_jabatan_id'); ?>
 		<?php echo $form->textField($model,'kenaikan_jabatan_id'); ?>
 	</div>

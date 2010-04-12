@@ -51,7 +51,8 @@ class Kegiatan extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'butirs' => array(self::HAS_MANY,'ButirKegiatan','kegiatan_id')
+            'butirs' => array(self::HAS_MANY,'ButirKegiatan','kegiatan_id'),
+            'subUnsur' => array(self::BELONGS_TO,'SubUnsur','sub_unsur_id'),
         );
     }
 
@@ -87,5 +88,10 @@ class Kegiatan extends CActiveRecord
         return new CActiveDataProvider('Kegiatan', array(
             'criteria'=>$criteria,
         ));
+    }
+    
+    public function getOptionKegiatan()
+    {
+        return sprintf("%s > %s ",$this->subUnsur->unsur->jenis_dupak->nama,$this->nama);
     }
 }

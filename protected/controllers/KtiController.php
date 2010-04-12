@@ -65,9 +65,10 @@ class KtiController extends Controller
 	 */
 	public function actionCreate()
 	{
-		if(!isset($_SESSION['KenaikanJabatan']))
-			$this->redirect(array('karyaIlmiah/create'));
+		if (!isset($_SESSION['KenaikanJabatan']))
+			$this->redirect(array('kenaikanJabatan/create'));
 		$model=new Kti;
+		$model->kenaikanJabatan = $_SESSION['KenaikanJabatan'];
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);

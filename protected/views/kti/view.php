@@ -19,7 +19,6 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'nama',
 		'kenaikan_jabatan_id',
 		'dupak_id',
 	),
