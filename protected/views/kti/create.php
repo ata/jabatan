@@ -11,10 +11,8 @@ $this->menu=array(
 ?>
 
 <h1>Create Kti</h1>
-<h1>Pengisian Nilai Dupak</h1>
-
 <?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$dupak->kenaikanJabatan->pegawai,
+	'data'=>$model->kenaikanJabatan->pegawai,
 	'attributes'=>array(
 		'id',
 		'nip',
@@ -29,4 +27,3 @@ $this->menu=array(
 )); ?>
 <br/>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -50,6 +50,7 @@ class Kti extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'kenaikanJabatan' => array(self::BELONGS_TO,'KenaikanJabatan','kenaikan_jabatan_id'),
 		);
 	}
 
