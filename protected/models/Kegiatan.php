@@ -98,9 +98,9 @@ class Kegiatan extends CActiveRecord
     public function getTopButir()
     {
         $c = new CDbCriteria;
-        $c->conditions = 'sub_unsur_id = :sub_unsur_id AND parent_id = :parent_id' ;
+        $c->condition = 'kegiatan_id = :kegiatan_id AND parent_id = :parent_id';
         $c->params = array(
-            'sub_unsur_id' => $this->sub_unsur_id,
+            'kegiatan_id' => $this->id,
             'parent_id' => 0
         );
         
