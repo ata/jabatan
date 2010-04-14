@@ -40,7 +40,7 @@ class Nilai extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('butir_kegiatan_id, dupak_id', 'required'),
+			//array('butir_kegiatan_id, dupak_id', 'required'),
 			array('ip_lama, ip_baru, ip_jumlah, tp_lama, tp_baru, tp_jumlah, butir_kegiatan_id, dupak_id', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

@@ -65,21 +65,21 @@ class KenaikanJabatanController extends Controller
      */
     public function actionCreate()
     {
-        $model=new KenaikanJabatan;
+        $kenaikanJabatan=new KenaikanJabatan;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if(isset($_POST['KenaikanJabatan']))
         {
-            $model->attributes=$_POST['KenaikanJabatan'];
-            $_SESSION['KenaikanJabatan'] = $model;
-            $this->redirect(array('kti/create'));
+            $kenaikanJabatan->attributes=$_POST['KenaikanJabatan'];
+            $_SESSION['KenaikanJabatan'] = $kenaikanJabatan;
+            $this->redirect(array('ktiItem/create'));
             
         }
 
         $this->render('create',array(
-            'model'=>$model,
+            'kenaikanJabatan'=>$kenaikanJabatan,
         ));
     }
 

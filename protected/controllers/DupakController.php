@@ -68,20 +68,20 @@ class DupakController extends Controller
 	{
 		if(!isset($_SESSION['KenaikanJabatan']))
 			$this->redirect(array('kenaikanJabatan/create'));
-		$model=new Dupak;
+		$dupak=new Dupak;
 		
-		$model->kenaikanJabatan = $_SESSION['KenaikanJabatan'];
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		
 		if(isset($_POST['Dupak']))
 		{
-			$model->attributes=$_POST['Dupak'];
-			$_SESSION['Dupak'] = $model;
+			$dupak->attributes=$_POST['Dupak'];
+			$_SESSION['Dupak'] = $dupak;
 			$this->redirect(array('nilai/create'));
 		}
 		$this->render('create',array(
-			'model'=>$model,
+			'dupak'=>$dupak,
+			'kenaikanJabatan' => $_SESSION['KenaikanJabatan'],
 		));
 	}
 	

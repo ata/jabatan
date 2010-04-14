@@ -1,6 +1,6 @@
 <?php
 
-class SubunsurController extends Controller
+class KtiItemController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to 'column2', meaning
@@ -65,20 +65,26 @@ class SubunsurController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Subunsur;
-
+		if (!isset($_SESSION['KenaikanJabatan']))
+			$this->redirect(array('kenaikanJabatan/create'));
+		
+		
+		$item = new KtiItem;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Subunsur']))
+		if(isset($_POST['KtiItem']))
 		{
-			$model->attributes=$_POST['Subunsur'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$item->attributes=$_POST['KtiItem'];
+			$_SESSION['KtiItem'][] = $item;
+			$this->redirect(array('create'));
+			
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'kenaikanJabatan'=> $_SESSION['KenaikanJabatan'],
+			'items' => isset($_SESSION['KtiItem'])?$_SESSION['KtiItem']:array(),
+			'item' => $item
 		));
 	}
 
@@ -93,9 +99,9 @@ class SubunsurController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Subunsur']))
+		if(isset($_POST['KtiItem']))
 		{
-			$model->attributes=$_POST['Subunsur'];
+			$model->attributes=$_POST['KtiItem'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -109,19 +115,11 @@ class SubunsurController extends Controller
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'index' page.
 	 */
+	
 	public function actionDelete()
 	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			// we only allow deletion via POST request
-			$this->loadModel()->delete();
-
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
-				$this->redirect(array('index'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		unset($_SESSION['KtiItem'][$_GET['id']]);
+		$this->redirect(array('create'));
 	}
 
 	/**
@@ -129,7 +127,7 @@ class SubunsurController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Subunsur');
+		$dataProvider=new CActiveDataProvider('KtiItem');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -140,9 +138,9 @@ class SubunsurController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Subunsur('search');
-		if(isset($_GET['Subunsur']))
-			$model->attributes=$_GET['Subunsur'];
+		$model=new KtiItem('search');
+		if(isset($_GET['KtiItem']))
+			$model->attributes=$_GET['KtiItem'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -158,7 +156,7 @@ class SubunsurController extends Controller
 		if($this->_model===null)
 		{
 			if(isset($_GET['id']))
-				$this->_model=Subunsur::model()->findbyPk($_GET['id']);
+				$this->_model=KtiItem::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
 				throw new CHttpException(404,'The requested page does not exist.');
 		}
@@ -171,7 +169,7 @@ class SubunsurController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='subunsur-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='kti-item-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

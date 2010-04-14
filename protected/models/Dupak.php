@@ -37,7 +37,7 @@ class Dupak extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('kenaikan_jabatan_id, jenis_dupak_id', 'required'),
+			//array('kenaikan_jabatan_id, jenis_dupak_id', 'required'),
 			array('kenaikan_jabatan_id, jenis_dupak_id', 'numerical'),
 			array('nomor, mp_selesai', 'length', 'max'=>255),
 			array('mp_mulai', 'safe'),
@@ -73,6 +73,7 @@ class Dupak extends CActiveRecord
 			'mp_selesai' => 'Mp Selesai',
 			'kenaikan_jabatan_id' => 'Kenaikan Jabatan',
 			'jenis_dupak_id' => 'Jenis Dupak',
+			'range' => 'Masa Penilaian',
 		);
 	}
 
@@ -105,5 +106,9 @@ class Dupak extends CActiveRecord
 		));
 	}
 	
+	public function getRange()
+	{
+		return "{$this->mp_mulai} - {$this->mp_selesai}";
+	}
 	
 }

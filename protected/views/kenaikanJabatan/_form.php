@@ -7,22 +7,22 @@
 
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 
-    <?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($kenaikanJabatan); ?>
 
     <div class="row">
-        <?php echo $form->labelEx($model,'pegawai_id'); ?>
-        <?php echo $form->dropDownList($model,'pegawai_id',CHtml::listData(Pegawai::model()->findAll(),'id','nama')); ?>
-        <?php echo $form->error($model,'pegawai_id'); ?>
+        <?php echo $form->labelEx($kenaikanJabatan,'pegawai_id'); ?>
+        <?php echo $form->dropDownList($kenaikanJabatan,'pegawai_id',CHtml::listData(Pegawai::model()->findAll(),'id','nama')); ?>
+        <?php echo $form->error($kenaikanJabatan,'pegawai_id'); ?>
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model,'jabatan_id'); ?>
-        <?php echo $form->dropDownList($model,'jabatan_id',CHtml::listData(Jabatan::model()->findAll(),'id','nama')); ?>
-        <?php echo $form->error($model,'jabatan_id'); ?>
+        <?php echo $form->labelEx($kenaikanJabatan,'jabatan_id'); ?>
+        <?php echo $form->dropDownList($kenaikanJabatan,'jabatan_id',CHtml::listData(Jabatan::model()->findAll(),'id','nama')); ?>
+        <?php echo $form->error($kenaikanJabatan,'jabatan_id'); ?>
     </div>
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($kenaikanJabatan->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
 <?php $this->endWidget(); ?>

@@ -34,7 +34,7 @@ class KenaikanJabatan extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('pegawai_id, jabatan_id', 'required'),
+            //array('pegawai_id, jabatan_id', 'required'),
             array('pegawai_id, jabatan_id', 'numerical'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.

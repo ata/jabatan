@@ -13,7 +13,7 @@ $this->menu=array(
 <h1>Pengisian Nilai Dupak</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$dupak->kenaikanJabatan->pegawai,
+	'data'=>$kenaikanJabatan->pegawai,
 	'attributes'=>array(
 		'id',
 		'nip',
@@ -26,9 +26,21 @@ $this->menu=array(
 		'jabatan',
 	),
 )); ?>
+
+<br/>
+<br/>
+<h2>Info Dupak</h2>
+<?php $this->widget('zii.widgets.CDetailView', array(
+	'data'=>$dupak,
+	'attributes'=>array(
+		'nomor',
+		'range'
+	),
+)); ?>
+
 <br/>
 
-<h1>Unsur Yang di nilai</h1>
+<h2>Unsur Yang di nilai</h2>
 <?php $n = 0;$form=$this->beginWidget('CActiveForm', array(
     'id'=>'nilai-form',
     'enableAjaxValidation'=>false,
@@ -91,9 +103,12 @@ $this->menu=array(
 		<?php endforeach?>
 	<?php endforeach?>
 </table>
-<?php echo CHtml::link('Back',array('dupak/create'));?>
+<?php echo CHtml::link('<button>Back</button>',array('dupak/create'));?>
 <?php echo CHtml::submitButton('Next'); ?>
 <?php $this->endWidget(); ?>
+<pre>
+<?php var_dump($_SESSION)?>
+</pre>
 
 
 

@@ -22,33 +22,6 @@ class KtiController extends Controller
 			'accessControl', // perform access control for CRUD operations
 		);
 	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
-
 	/**
 	 * Displays a particular model.
 	 */
@@ -67,22 +40,31 @@ class KtiController extends Controller
 	{
 		if (!isset($_SESSION['KenaikanJabatan']))
 			$this->redirect(array('kenaikanJabatan/create'));
-		$model=new Kti;
-		$model->kenaikanJabatan = $_SESSION['KenaikanJabatan'];
-
+		
+		
+		$item = new KtiItem;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Kti']))
+		if(isset($_POST['KtiItem']))
 		{
-			$model->attributes=$_POST['Kti'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$item->attributes=$_POST['KtiItem'];
+			$_SESSION['KtiItem'][] = $item;
+			$this->redirect(array('create'));
+			
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'kenaikanJabatan'=> $_SESSION['KenaikanJabatan'],
+			'items' => isset($_SESSION['KtiItem'])?$_SESSION['KtiItem']:array(),
+			'item' => $item
 		));
+	}
+	
+	public function actionDeleteItem()
+	{
+		unset($_SESSION['KtiItem'][$_GET['id']]);
+		$this->redirect(array('create'));
 	}
 
 	/**
@@ -107,6 +89,8 @@ class KtiController extends Controller
 			'model'=>$model,
 		));
 	}
+	
+	
 
 	/**
 	 * Deletes a particular model.

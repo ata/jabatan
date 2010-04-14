@@ -59,7 +59,7 @@ $this->menu=array(
 			<td><?php echo $it->p2jp_lipi ?></td>
 			<td><?php echo $it->keterangan ?></td>
 			<td>
-				<?php echo Chtml::link('delete', array('deleteItem','id' => $i))?>
+				<?php echo Chtml::link('delete', array('delete','id' => $i))?>
 			</td>
 		</tr>
 	<?php endforeach?>

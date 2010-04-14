@@ -67,6 +67,7 @@ class NilaiController extends Controller
 	{
 		if(!isset($_SESSION['Dupak']))
 			$this->redirect(array('dupak/create'));
+			
 		$dupak = $_SESSION['Dupak'];
 		$nilai = new Nilai;
 		
@@ -83,12 +84,12 @@ class NilaiController extends Controller
 			*/
 			
 		}
-		
-		$unsurs = Unsur::model()->findByDupak($dupak);
+		//var_dump($_SESSION);
 		$this->render('create',array(
+			'kenaikanJabatan' => $_SESSION['KenaikanJabatan'],
 			'dupak' => $dupak,
-			'unsurs' => $unsurs,
-			'nilai' => $nilai
+			'unsurs' => Unsur::model()->findByDupak($dupak),
+			'nilai' => $nilai,
 		));
 	}
 

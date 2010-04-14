@@ -37,7 +37,7 @@ class KaryaIlmiah extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('kti_id', 'required'),
+			//array('kti_id', 'required'),
 			array('p2jp_instansi, p2jp_lipi', 'numerical', 'integerOnly'=>true),
 			array('kti_id', 'numerical'),
 			array('judul, keterangan', 'safe'),

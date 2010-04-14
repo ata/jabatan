@@ -1,12 +1,16 @@
 <?php
 
-class Kti extends CActiveRecord
+class KtiItem extends CActiveRecord
 {
 	/**
-	 * The followings are the available columns in table 'kti':
+	 * The followings are the available columns in table 'kti_item':
 	 * @var double $id
-	 * @var double $kenaikan_jabatan_id
-	 * @var double $dupak_id
+	 * @var string $judul
+	 * @var string $unsur
+	 * @var integer $p2jp_instansi
+	 * @var integer $p2jp_lipi
+	 * @var string $keterangan
+	 * @var double $kti_id
 	 */
 
 	/**
@@ -23,7 +27,7 @@ class Kti extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'kti';
+		return 'kti_item';
 	}
 
 	/**
@@ -34,11 +38,14 @@ class Kti extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			//array('kenaikan_jabatan_id, dupak_id', 'required'),
-			array('kenaikan_jabatan_id, dupak_id', 'numerical'),
+			//array('kti_id', 'required'),
+			array('p2jp_instansi, p2jp_lipi', 'numerical', 'integerOnly'=>true),
+			array('kti_id', 'numerical'),
+			array('unsur', 'length', 'max'=>255),
+			array('judul, keterangan', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, kenaikan_jabatan_id, dupak_id', 'safe', 'on'=>'search'),
+			array('id, judul, unsur, p2jp_instansi, p2jp_lipi, keterangan, kti_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,7 +57,6 @@ class Kti extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'kenaikanJabatan' => array(self::BELONGS_TO,'KenaikanJabatan','kenaikan_jabatan_id'),
 		);
 	}
 
@@ -61,8 +67,12 @@ class Kti extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'kenaikan_jabatan_id' => 'Kenaikan Jabatan',
-			'dupak_id' => 'Dupak',
+			'judul' => 'Judul',
+			'unsur' => 'Unsur',
+			'p2jp_instansi' => 'P2jp Instansi',
+			'p2jp_lipi' => 'P2jp Lipi',
+			'keterangan' => 'Keterangan',
+			'kti_id' => 'Kti',
 		);
 	}
 
@@ -79,11 +89,19 @@ class Kti extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 
-		$criteria->compare('kenaikan_jabatan_id',$this->kenaikan_jabatan_id);
+		$criteria->compare('judul',$this->judul,true);
 
-		$criteria->compare('dupak_id',$this->dupak_id);
+		$criteria->compare('unsur',$this->unsur,true);
 
-		return new CActiveDataProvider('Kti', array(
+		$criteria->compare('p2jp_instansi',$this->p2jp_instansi);
+
+		$criteria->compare('p2jp_lipi',$this->p2jp_lipi);
+
+		$criteria->compare('keterangan',$this->keterangan,true);
+
+		$criteria->compare('kti_id',$this->kti_id);
+
+		return new CActiveDataProvider('KtiItem', array(
 			'criteria'=>$criteria,
 		));
 	}
