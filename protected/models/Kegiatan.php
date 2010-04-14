@@ -94,4 +94,16 @@ class Kegiatan extends CActiveRecord
     {
         return sprintf("%s > %s ",$this->subUnsur->unsur->jenis_dupak->nama,$this->nama);
     }
+    
+    public function getTopButir()
+    {
+        $c = new CDbCriteria;
+        $c->conditions = 'sub_unsur_id = :sub_unsur_id AND parent_id = :parent_id' ;
+        $c->params = array(
+            'sub_unsur_id' => $this->sub_unsur_id,
+            'parent_id' => 0
+        );
+        
+        return ButirKegiatan::model()->findAll($c);
+    }
 }

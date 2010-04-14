@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Kenaikan Jabatans'=>array('index'),
+	'Kenaikan Jabatan'=>array('index'),
 	'Create',
 );
 

@@ -84,7 +84,7 @@ $this->menu=array(
 					<td><?php echo $k+1?></td>
 					<td colspan="6"><?php echo $kegiatan->nama;?></td>
 				</tr>
-				<?php foreach($kegiatan->butirs as $l => $butir):?>
+				<?php foreach($kegiatan->topButir as $l => $butir):?>
 					<?php echo $form->hiddenField($nilai,"[$n]butir_kegiatan_id",array('value'=>$butir->id)) ?>
 					<tr>
 						<td colspan="3"></td>
@@ -98,6 +98,51 @@ $this->menu=array(
 						<td><?php echo $form->textField($nilai,"[$n]tp_jumlah",array('size'=>2))?></td>
 					</tr>
 					<?php $n++?>
+					<?php foreach($butir->childs as $c1 => $child1):?>
+						<?php echo $form->hiddenField($nilai,"[$n]butir_kegiatan_id",array('value'=>$child1->id)) ?>
+						<tr>
+							<td colspan="4"></td>
+							<td><?php echo $c1+1?></td>
+							<td colspan="4"><?php echo $child1->nama?></td>
+							<td><?php echo $form->textField($nilai,"[$n]ip_baru",array('size'=>2))?></td>
+							<td><?php echo $form->textField($nilai,"[$n]ip_lama",array('size'=>2))?></td>
+							<td><?php echo $form->textField($nilai,"[$n]ip_jumlah",array('size'=>2))?></td>
+							<td><?php echo $form->textField($nilai,"[$n]tp_baru",array('size'=>2))?></td>
+							<td><?php echo $form->textField($nilai,"[$n]tp_lama",array('size'=>2))?></td>
+							<td><?php echo $form->textField($nilai,"[$n]tp_jumlah",array('size'=>2))?></td>
+						</tr>
+						<?php $n++?>
+						<?php foreach($child1->childs as $c2 => $child2):?>
+							<?php echo $form->hiddenField($nilai,"[$n]butir_kegiatan_id",array('value'=>$child2->id)) ?>
+							<tr>
+								<td colspan="5"></td>
+								<td><?php echo $c2+1?></td>
+								<td colspan="3"><?php echo $child2->nama?></td>
+								<td><?php echo $form->textField($nilai,"[$n]ip_baru",array('size'=>2))?></td>
+								<td><?php echo $form->textField($nilai,"[$n]ip_lama",array('size'=>2))?></td>
+								<td><?php echo $form->textField($nilai,"[$n]ip_jumlah",array('size'=>2))?></td>
+								<td><?php echo $form->textField($nilai,"[$n]tp_baru",array('size'=>2))?></td>
+								<td><?php echo $form->textField($nilai,"[$n]tp_lama",array('size'=>2))?></td>
+								<td><?php echo $form->textField($nilai,"[$n]tp_jumlah",array('size'=>2))?></td>
+							</tr>
+							<?php $n++?>
+							<?php foreach($child2->childs as $c3 => $child3):?>
+								<?php echo $form->hiddenField($nilai,"[$n]butir_kegiatan_id",array('value'=>$child3->id)) ?>
+								<tr>
+									<td colspan="6"></td>
+									<td><?php echo $c3+1?></td>
+									<td colspan="2"><?php echo $child3->nama?></td>
+									<td><?php echo $form->textField($nilai,"[$n]ip_baru",array('size'=>2))?></td>
+									<td><?php echo $form->textField($nilai,"[$n]ip_lama",array('size'=>2))?></td>
+									<td><?php echo $form->textField($nilai,"[$n]ip_jumlah",array('size'=>2))?></td>
+									<td><?php echo $form->textField($nilai,"[$n]tp_baru",array('size'=>2))?></td>
+									<td><?php echo $form->textField($nilai,"[$n]tp_lama",array('size'=>2))?></td>
+									<td><?php echo $form->textField($nilai,"[$n]tp_jumlah",array('size'=>2))?></td>
+								</tr>
+								<?php $n++?>
+							<?php endforeach?>
+						<?php endforeach?>
+					<?php endforeach?>
 				<?php endforeach?>
 			<?php endforeach?>
 		<?php endforeach?>
@@ -106,10 +151,6 @@ $this->menu=array(
 <?php echo CHtml::link('<button>Back</button>',array('dupak/create'));?>
 <?php echo CHtml::submitButton('Next'); ?>
 <?php $this->endWidget(); ?>
-<pre>
-<?php var_dump($_SESSION)?>
-</pre>
-
 
 
 

@@ -68,7 +68,8 @@ class DupakController extends Controller
 	{
 		if(!isset($_SESSION['KenaikanJabatan']))
 			$this->redirect(array('kenaikanJabatan/create'));
-		$dupak=new Dupak;
+			
+		$dupak = isset($_SESSION['Dupak'])?$_SESSION['Dupak']:new Dupak;
 		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -83,11 +84,6 @@ class DupakController extends Controller
 			'dupak'=>$dupak,
 			'kenaikanJabatan' => $_SESSION['KenaikanJabatan'],
 		));
-	}
-	
-	public function actionIsiNilai()
-	{
-		
 	}
 
 	/**
