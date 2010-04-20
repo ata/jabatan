@@ -2,177 +2,177 @@
 
 class KtiItemController extends Controller
 {
-	/**
-	 * @var string the default layout for the views. Defaults to 'column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='column2';
+    /**
+     * @var string the default layout for the views. Defaults to 'column2', meaning
+     * using two-column layout. See 'protected/views/layouts/column2.php'.
+     */
+    public $layout='column2';
 
-	/**
-	 * @var CActiveRecord the currently loaded data model instance.
-	 */
-	private $_model;
+    /**
+     * @var CActiveRecord the currently loaded data model instance.
+     */
+    private $_model;
 
-	/**
-	 * @return array action filters
-	 */
-	public function filters()
-	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
-	}
+    /**
+     * @return array action filters
+     */
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+        );
+    }
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
+    /**
+     * Specifies the access control rules.
+     * This method is used by the 'accessControl' filter.
+     * @return array access control rules
+     */
+    public function accessRules()
+    {
+        return array(
+            array('allow',  // allow all users to perform 'index' and 'view' actions
+                'actions'=>array('index','view'),
+                'users'=>array('*'),
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions'=>array('create','update'),
+                'users'=>array('@'),
+            ),
+            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                'actions'=>array('admin','delete'),
+                'users'=>array('admin'),
+            ),
+            array('deny',  // deny all users
+                'users'=>array('*'),
+            ),
+        );
+    }
 
-	/**
-	 * Displays a particular model.
-	 */
-	public function actionView()
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel(),
-		));
-	}
+    /**
+     * Displays a particular model.
+     */
+    public function actionView()
+    {
+        $this->render('view',array(
+            'model'=>$this->loadModel(),
+        ));
+    }
 
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate()
-	{
-		if (!isset($_SESSION['KenaikanJabatan']))
-			$this->redirect(array('kenaikanJabatan/create'));
-		
-		
-		$item = new KtiItem;
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+    /**
+     * Creates a new model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     */
+    public function actionCreate()
+    {
+        if (!isset($_SESSION['KenaikanJabatan']))
+            $this->redirect(array('kenaikanJabatan/create'));
+        
+        
+        $item = new KtiItem;
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-		if(isset($_POST['KtiItem']))
-		{
-			$item->attributes=$_POST['KtiItem'];
-			$_SESSION['KtiItem'][] = $item;
-			$this->redirect(array('create'));
-			
-		}
+        if(isset($_POST['KtiItem']))
+        {
+            $item->attributes=$_POST['KtiItem'];
+            $_SESSION['KtiItem'][] = $item;
+            $this->redirect(array('create'));
+            
+        }
 
-		$this->render('create',array(
-			'kenaikanJabatan'=> $_SESSION['KenaikanJabatan'],
-			'items' => isset($_SESSION['KtiItem'])?$_SESSION['KtiItem']:array(),
-			'item' => $item
-		));
-	}
+        $this->render('create',array(
+            'kenaikanJabatan'=> $_SESSION['KenaikanJabatan'],
+            'items' => isset($_SESSION['KtiItem'])?$_SESSION['KtiItem']:array(),
+            'item' => $item 
+        ));
+    }
 
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionUpdate()
-	{
-		$model=$this->loadModel();
+    /**
+     * Updates a particular model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     */
+    public function actionUpdate()
+    {
+        $model=$this->loadModel();
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-		if(isset($_POST['KtiItem']))
-		{
-			$model->attributes=$_POST['KtiItem'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+        if(isset($_POST['KtiItem']))
+        {
+            $model->attributes=$_POST['KtiItem'];
+            if($model->save())
+                $this->redirect(array('view','id'=>$model->id));
+        }
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
+        $this->render('update',array(
+            'model'=>$model,
+        ));
+    }
 
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 */
-	
-	public function actionDelete()
-	{
-		unset($_SESSION['KtiItem'][$_GET['id']]);
-		$this->redirect(array('create'));
-	}
+    /**
+     * Deletes a particular model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     */
+    
+    public function actionDelete()
+    {
+        unset($_SESSION['KtiItem'][$_GET['id']]);
+        $this->redirect(array('create'));
+    }
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('KtiItem');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+    /**
+     * Lists all models.
+     */
+    public function actionIndex()
+    {
+        $dataProvider=new CActiveDataProvider('KtiItem');
+        $this->render('index',array(
+            'dataProvider'=>$dataProvider,
+        ));
+    }
 
-	/**
-	 * Manages all models.
-	 */
-	public function actionAdmin()
-	{
-		$model=new KtiItem('search');
-		if(isset($_GET['KtiItem']))
-			$model->attributes=$_GET['KtiItem'];
+    /**
+     * Manages all models.
+     */
+    public function actionAdmin()
+    {
+        $model=new KtiItem('search');
+        if(isset($_GET['KtiItem']))
+            $model->attributes=$_GET['KtiItem'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}
+        $this->render('admin',array(
+            'model'=>$model,
+        ));
+    }
 
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 */
-	public function loadModel()
-	{
-		if($this->_model===null)
-		{
-			if(isset($_GET['id']))
-				$this->_model=KtiItem::model()->findbyPk($_GET['id']);
-			if($this->_model===null)
-				throw new CHttpException(404,'The requested page does not exist.');
-		}
-		return $this->_model;
-	}
+    /**
+     * Returns the data model based on the primary key given in the GET variable.
+     * If the data model is not found, an HTTP exception will be raised.
+     */
+    public function loadModel()
+    {
+        if($this->_model===null)
+        {
+            if(isset($_GET['id']))
+                $this->_model=KtiItem::model()->findbyPk($_GET['id']);
+            if($this->_model===null)
+                throw new CHttpException(404,'The requested page does not exist.');
+        }
+        return $this->_model;
+    }
 
-	/**
-	 * Performs the AJAX validation.
-	 * @param CModel the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='kti-item-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
+    /**
+     * Performs the AJAX validation.
+     * @param CModel the model to be validated
+     */
+    protected function performAjaxValidation($model)
+    {
+        if(isset($_POST['ajax']) && $_POST['ajax']==='kti-item-form')
+        {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+    }
 }

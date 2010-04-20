@@ -78,7 +78,7 @@ class NilaiController extends Controller
                 $nilais[] = clone $nilai;
             }
             $_SESSION['Nilai'] = $nilais;
-            $this->redirect(array('dupak'));
+            $this->redirect(array('dupak/catatan'));
         }
         //var_dump($_SESSION);
         $this->render('create',array(

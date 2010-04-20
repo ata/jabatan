@@ -41,7 +41,7 @@ class DupakController extends Controller
                 'users'=>array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions'=>array('admin','delete','isiNilai'),
+                'actions'=>array('admin','delete','catatan'),
                 'users'=>array('admin'),
             ),
             array('deny',  // deny all users
@@ -108,7 +108,49 @@ class DupakController extends Controller
             'model'=>$model,
         ));
     }
-
+    
+    public function actionCatatan()
+    {
+        if(!isset($_SESSION['KenaikanJabatan']))
+            $this->redirect(array('kenaikanJabatan/create'));
+        if(isset($_SESSION['Lampiran'])) unset($_SESSION['Lampiran']);
+        foreach($_SESSION['KtiItem'] as $item){
+            $lampiran = new Lampiran;
+            $lampiran->deskripsi = $item->judul;
+            $_SESSION['Lampiran'][] = clone $lampiran;
+        }
+        
+        if(isset($_POST['CatatanKetuaPenilai'])){
+            $c = new CatatanKetuaPenilai;
+            $c->attributes = $_POST['CatatanKetuaPenilai'];
+            $_SESSION['CatatanKetuaPenilai'][] = clone $c;
+        }
+        
+        if(isset($_POST['CatatanPengusul'])){
+            $c = new CatatanPengusul;
+            $c->attributes = $_POST['CatatanPengusul'];
+            $_SESSION['CatatanPengusul'][] = clone $c;
+        }
+        
+        if(isset($_POST['CatatanTimPenilai'])){
+            $c = new CatatanTimPenilai;
+            $c->attributes = $_POST['CatatanTimPenilai'];
+            $_SESSION['CatatanTimPenilai'][] = clone $c;
+        }
+        
+        
+        $this->render('catatan',array(
+            'listCatatanKetuaPenilai' => isset($_SESSION['CatatanKetuaPenilai'])?
+                $_SESSION['CatatanKetuaPenilai']:array(),
+            'listCatatanPengusul' => isset($_SESSION['CatatanPengusul'])?
+                $_SESSION['CatatanPengusul']:array(),
+            'listCatatanTimPenilai' => isset($_SESSION['CatatanTimPenilai'])?
+                $_SESSION['CatatanTimPenilai']:array(),
+            'listLampiran' => $_SESSION['Lampiran'],
+            'dupak'=>$_SESSION['Dupak'],
+        ));
+    }
+    
     /**
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

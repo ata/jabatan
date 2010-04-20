@@ -3177,3 +3177,36 @@ Stack trace:
 #3 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
 #4 /home/ata/Project/jabatan/index.php(13): CApplication->run()
 #5 {main} REQUEST_URI=/jabatan/nilai/dupak.html
+2010/04/19 19:50:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dupak".' in /home/ata/Project/jabatan/framework/web/CController.php:439
+Stack trace:
+#0 /home/ata/Project/jabatan/framework/web/CController.php(262): CController->missingAction('dupak')
+#1 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): CController->run('dupak')
+#2 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController('nilai/dupak')
+#3 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#4 /home/ata/Project/jabatan/index.php(13): CApplication->run()
+#5 {main} REQUEST_URI=/jabatan/nilai/dupak.html
+2010/04/19 20:40:35 [error] [exception.CException] exception 'CException' with message 'Property "Dupak.pegawai_id" is not defined.' in /home/ata/Project/jabatan/framework/base/CComponent.php:131
+Stack trace:
+#0 /home/ata/Project/jabatan/framework/db/ar/CActiveRecord.php(107): CComponent->__get('pegawai_id')
+#1 /home/ata/Project/jabatan/framework/web/helpers/CHtml.php(1322): CActiveRecord->__get('pegawai_id')
+#2 /home/ata/Project/jabatan/framework/web/widgets/CActiveForm.php(450): CHtml::activeDropDownList(Object(Dupak), 'pegawai_id', Array, Array)
+#3 /home/ata/Project/jabatan/protected/views/dupak/catatan.php(10): CActiveForm->dropDownList(Object(Dupak), 'pegawai_id', Array)
+#4 /home/ata/Project/jabatan/framework/web/CBaseController.php(119): require('/home/ata/Proje...')
+#5 /home/ata/Project/jabatan/framework/web/CBaseController.php(88): CBaseController->renderInternal('/home/ata/Proje...', Array, true)
+#6 /home/ata/Project/jabatan/framework/web/CController.php(742): CBaseController->renderFile('/home/ata/Proje...', Array, true)
+#7 /home/ata/Project/jabatan/framework/web/CController.php(681): CController->renderPartial('catatan', Array, true)
+#8 /home/ata/Project/jabatan/protected/controllers/DupakController.php(151): CController->render('catatan', Array)
+#9 /home/ata/Project/jabatan/framework/web/actions/CInlineAction.php(32): DupakController->actionCatatan()
+#10 /home/ata/Project/jabatan/framework/web/CController.php(300): CInlineAction->run()
+#11 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(129): CController->runAction(Object(CInlineAction))
+#12 /home/ata/Project/jabatan/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#13 /home/ata/Project/jabatan/framework/web/CController.php(993): CFilter->filter(Object(CFilterChain))
+#14 /home/ata/Project/jabatan/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#15 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(126): CInlineFilter->filter(Object(CFilterChain))
+#16 /home/ata/Project/jabatan/framework/web/CController.php(283): CFilterChain->run()
+#17 /home/ata/Project/jabatan/framework/web/CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): CController->run('catatan')
+#19 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController('dupak/catatan')
+#20 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#21 /home/ata/Project/jabatan/index.php(13): CApplication->run()
+#22 {main} REQUEST_URI=/jabatan/dupak/catatan.html
