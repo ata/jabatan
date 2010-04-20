@@ -120,22 +120,27 @@ class DupakController extends Controller
             $_SESSION['Lampiran'][] = clone $lampiran;
         }
         
+        $catatanKetuaPenilai = new CatatanKetuaPenilai;
+        $catatanPengusul = new CatatanPengusul;
+        $catatanTimPenilai = new CatatanTimPenilai;
+        
+        
         if(isset($_POST['CatatanKetuaPenilai'])){
-            $c = new CatatanKetuaPenilai;
-            $c->attributes = $_POST['CatatanKetuaPenilai'];
-            $_SESSION['CatatanKetuaPenilai'][] = clone $c;
+            $catatanKetuaPenilai = new CatatanKetuaPenilai;
+            $catatanKetuaPenilai->attributes = $_POST['CatatanKetuaPenilai'];
+            $_SESSION['CatatanKetuaPenilai'][] = $catatanKetuaPenilai;
         }
         
         if(isset($_POST['CatatanPengusul'])){
-            $c = new CatatanPengusul;
-            $c->attributes = $_POST['CatatanPengusul'];
-            $_SESSION['CatatanPengusul'][] = clone $c;
+            $catatanPengusul = new CatatanPengusul;
+            $catatanPengusul->attributes = $_POST['CatatanPengusul'];
+            $_SESSION['CatatanPengusul'][] = $catatanPengusul;
         }
         
         if(isset($_POST['CatatanTimPenilai'])){
-            $c = new CatatanTimPenilai;
-            $c->attributes = $_POST['CatatanTimPenilai'];
-            $_SESSION['CatatanTimPenilai'][] = clone $c;
+            $catatanTimPenilai = new CatatanTimPenilai;
+            $catatanTimPenilai->attributes = $_POST['CatatanTimPenilai'];
+            $_SESSION['CatatanTimPenilai'][] = $catatanTimPenilai;
         }
         
         
@@ -148,6 +153,9 @@ class DupakController extends Controller
                 $_SESSION['CatatanTimPenilai']:array(),
             'listLampiran' => $_SESSION['Lampiran'],
             'dupak'=>$_SESSION['Dupak'],
+            'catatanTimPenilai' => $catatanTimPenilai,
+            'catatanPengusul' => $catatanPengusul,
+            'catatanTimPenilai' => $catatanTimPenilai
         ));
     }
     
