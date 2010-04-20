@@ -41,7 +41,7 @@ class DupakController extends Controller
                 'users'=>array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions'=>array('admin','delete','catatan'),
+                'actions'=>array('admin','delete','catatan','deleteCatatan'),
                 'users'=>array('admin'),
             ),
             array('deny',  // deny all users
@@ -113,17 +113,15 @@ class DupakController extends Controller
     {
         if(!isset($_SESSION['KenaikanJabatan']))
             $this->redirect(array('kenaikanJabatan/create'));
-        if(isset($_SESSION['Lampiran'])) unset($_SESSION['Lampiran']);
+        if(isset($_SESSION['Lampiran'])) 
+            unset($_SESSION['Lampiran']);
+        if(!isset($_SESSION['KtiItem']))
+            $this->redirect(array('KtiItem/create'));
         foreach($_SESSION['KtiItem'] as $item){
             $lampiran = new Lampiran;
             $lampiran->deskripsi = $item->judul;
             $_SESSION['Lampiran'][] = clone $lampiran;
         }
-        
-        $catatanKetuaPenilai = new CatatanKetuaPenilai;
-        $catatanPengusul = new CatatanPengusul;
-        $catatanTimPenilai = new CatatanTimPenilai;
-        
         
         if(isset($_POST['CatatanKetuaPenilai'])){
             $catatanKetuaPenilai = new CatatanKetuaPenilai;
@@ -143,6 +141,13 @@ class DupakController extends Controller
             $_SESSION['CatatanTimPenilai'][] = $catatanTimPenilai;
         }
         
+        if(!empty($_POST)){
+            $this->redirect(array('catatan'));
+        }
+        
+        $catatanKetuaPenilai = new CatatanKetuaPenilai;
+        $catatanPengusul = new CatatanPengusul;
+        $catatanTimPenilai = new CatatanTimPenilai;
         
         $this->render('catatan',array(
             'listCatatanKetuaPenilai' => isset($_SESSION['CatatanKetuaPenilai'])?
@@ -153,10 +158,28 @@ class DupakController extends Controller
                 $_SESSION['CatatanTimPenilai']:array(),
             'listLampiran' => $_SESSION['Lampiran'],
             'dupak'=>$_SESSION['Dupak'],
-            'catatanTimPenilai' => $catatanTimPenilai,
+            'catatanKetuaPenilai' => $catatanKetuaPenilai,
             'catatanPengusul' => $catatanPengusul,
             'catatanTimPenilai' => $catatanTimPenilai
         ));
+    }
+    
+    public function actionDeleteCatatan()
+    {
+        if(isset($_GET['type']) && isset($_GET)){
+            switch($_GET['type']){
+                case 'ckp':
+                    unset($_SESSION['CatatanKetuaPenilai'][$_GET['index']]);
+                    break;
+                case 'cp':
+                    unset($_SESSION['CatatanPengusul'][$_GET['index']]);
+                    break;
+                case 'ctp':
+                    unset($_SESSION['CatatanTimPenilai'][$_GET['index']]);
+                    break;
+            }
+        }
+        $this->redirect(array('catatan'));
     }
     
     /**
