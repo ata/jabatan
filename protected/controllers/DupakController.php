@@ -115,8 +115,12 @@ class DupakController extends Controller
             $this->redirect(array('kenaikanJabatan/create'));
         if(isset($_SESSION['Lampiran'])) 
             unset($_SESSION['Lampiran']);
-        if(!isset($_SESSION['KtiItem']))
-            $this->redirect(array('KtiItem/create'));
+        if(!isset($_SESSION['KtiItem'])){
+            $_SESSION['KtiItem'] = array();
+            $_SESSION['Lampiran'] = array();
+        }
+            //$this->redirect(array('KtiItem/create'));
+            
         foreach($_SESSION['KtiItem'] as $item){
             $lampiran = new Lampiran;
             $lampiran->deskripsi = $item->judul;
