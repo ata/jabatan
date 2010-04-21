@@ -34,7 +34,8 @@ $this->menu=array(
     'data'=>$dupak,
     'attributes'=>array(
         'nomor',
-        'range'
+        'range',
+        'jenis.nama'
     ),
 )); ?>
 
