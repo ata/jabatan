@@ -3358,3 +3358,376 @@ Stack trace:
 REQUEST_URI=/jabatan/dupak/catatan.html
 in /home/ata/Project/jabatan/protected/controllers/DupakController.php (159)
 in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:19:35 [error] [php] Invalid argument supplied for foreach() (/home/ata/Project/jabatan/protected/views/dupak/catatan.php:44)
+Stack trace:
+#0 /home/ata/Project/jabatan/framework/web/CController.php(742): DupakController->renderFile()
+#1 /home/ata/Project/jabatan/framework/web/CController.php(681): DupakController->renderPartial()
+#2 /home/ata/Project/jabatan/protected/controllers/DupakController.php(215): DupakController->render()
+#3 /home/ata/Project/jabatan/framework/web/actions/CInlineAction.php(32): DupakController->actionCatatan()
+#4 /home/ata/Project/jabatan/framework/web/CController.php(300): CInlineAction->run()
+#5 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(129): DupakController->runAction()
+#6 /home/ata/Project/jabatan/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /home/ata/Project/jabatan/framework/web/CController.php(993): CAccessControlFilter->filter()
+#8 /home/ata/Project/jabatan/framework/web/filters/CInlineFilter.php(59): DupakController->filterAccessControl()
+#9 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(126): CInlineFilter->filter()
+#10 /home/ata/Project/jabatan/framework/web/CController.php(283): CFilterChain->run()
+#11 /home/ata/Project/jabatan/framework/web/CController.php(257): DupakController->runActionWithFilters()
+#12 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): DupakController->run()
+#13 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController()
+#14 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#15 /home/ata/Project/jabatan/index.php(13): CWebApplication->run()
+REQUEST_URI=/jabatan/dupak/catatan.html
+in /home/ata/Project/jabatan/protected/views/dupak/catatan.php (44)
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (215)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:21:32 [error] [exception.CException] exception 'CException' with message 'Property "Penilai.nama" is not defined.' in /home/ata/Project/jabatan/framework/base/CComponent.php:131
+Stack trace:
+#0 /home/ata/Project/jabatan/framework/db/ar/CActiveRecord.php(107): CComponent->__get('nama')
+#1 /home/ata/Project/jabatan/protected/views/dupak/catatan.php(46): CActiveRecord->__get('nama')
+#2 /home/ata/Project/jabatan/framework/web/CBaseController.php(119): require('/home/ata/Proje...')
+#3 /home/ata/Project/jabatan/framework/web/CBaseController.php(88): CBaseController->renderInternal('/home/ata/Proje...', Array, true)
+#4 /home/ata/Project/jabatan/framework/web/CController.php(742): CBaseController->renderFile('/home/ata/Proje...', Array, true)
+#5 /home/ata/Project/jabatan/framework/web/CController.php(681): CController->renderPartial('catatan', Array, true)
+#6 /home/ata/Project/jabatan/protected/controllers/DupakController.php(220): CController->render('catatan', Array)
+#7 /home/ata/Project/jabatan/framework/web/actions/CInlineAction.php(32): DupakController->actionCatatan()
+#8 /home/ata/Project/jabatan/framework/web/CController.php(300): CInlineAction->run()
+#9 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(129): CController->runAction(Object(CInlineAction))
+#10 /home/ata/Project/jabatan/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#11 /home/ata/Project/jabatan/framework/web/CController.php(993): CFilter->filter(Object(CFilterChain))
+#12 /home/ata/Project/jabatan/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#13 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(126): CInlineFilter->filter(Object(CFilterChain))
+#14 /home/ata/Project/jabatan/framework/web/CController.php(283): CFilterChain->run()
+#15 /home/ata/Project/jabatan/framework/web/CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): CController->run('catatan')
+#17 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController('dupak/catatan')
+#18 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#19 /home/ata/Project/jabatan/index.php(13): CApplication->run()
+#20 {main} REQUEST_URI=/jabatan/dupak/catatan.html
+2010/04/23 01:22:47 [error] [exception.CException] exception 'CException' with message 'DupakController has an extra endWidget() call in its view.' in /home/ata/Project/jabatan/framework/web/CBaseController.php:197
+Stack trace:
+#0 /home/ata/Project/jabatan/protected/views/dupak/catatan.php(75): CBaseController->endWidget()
+#1 /home/ata/Project/jabatan/framework/web/CBaseController.php(119): require('/home/ata/Proje...')
+#2 /home/ata/Project/jabatan/framework/web/CBaseController.php(88): CBaseController->renderInternal('/home/ata/Proje...', Array, true)
+#3 /home/ata/Project/jabatan/framework/web/CController.php(742): CBaseController->renderFile('/home/ata/Proje...', Array, true)
+#4 /home/ata/Project/jabatan/framework/web/CController.php(681): CController->renderPartial('catatan', Array, true)
+#5 /home/ata/Project/jabatan/protected/controllers/DupakController.php(220): CController->render('catatan', Array)
+#6 /home/ata/Project/jabatan/framework/web/actions/CInlineAction.php(32): DupakController->actionCatatan()
+#7 /home/ata/Project/jabatan/framework/web/CController.php(300): CInlineAction->run()
+#8 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(129): CController->runAction(Object(CInlineAction))
+#9 /home/ata/Project/jabatan/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#10 /home/ata/Project/jabatan/framework/web/CController.php(993): CFilter->filter(Object(CFilterChain))
+#11 /home/ata/Project/jabatan/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(126): CInlineFilter->filter(Object(CFilterChain))
+#13 /home/ata/Project/jabatan/framework/web/CController.php(283): CFilterChain->run()
+#14 /home/ata/Project/jabatan/framework/web/CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): CController->run('catatan')
+#16 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController('dupak/catatan')
+#17 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#18 /home/ata/Project/jabatan/index.php(13): CApplication->run()
+#19 {main} REQUEST_URI=/jabatan/dupak/catatan.html
+2010/04/23 01:27:30 [error] [php] Undefined index: ketua (/home/ata/Project/jabatan/protected/controllers/DupakController.php:165)
+Stack trace:
+#0 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(129): DupakController->runAction()
+#1 /home/ata/Project/jabatan/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#2 /home/ata/Project/jabatan/framework/web/CController.php(993): CAccessControlFilter->filter()
+#3 /home/ata/Project/jabatan/framework/web/filters/CInlineFilter.php(59): DupakController->filterAccessControl()
+#4 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(126): CInlineFilter->filter()
+#5 /home/ata/Project/jabatan/framework/web/CController.php(283): CFilterChain->run()
+#6 /home/ata/Project/jabatan/framework/web/CController.php(257): DupakController->runActionWithFilters()
+#7 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): DupakController->run()
+#8 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController()
+#9 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#10 /home/ata/Project/jabatan/index.php(13): CWebApplication->run()
+REQUEST_URI=/jabatan/dupak/catatan.html
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:28:13 [error] [php] Undefined index: ketua (/home/ata/Project/jabatan/protected/controllers/DupakController.php:165)
+Stack trace:
+#0 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(129): DupakController->runAction()
+#1 /home/ata/Project/jabatan/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#2 /home/ata/Project/jabatan/framework/web/CController.php(993): CAccessControlFilter->filter()
+#3 /home/ata/Project/jabatan/framework/web/filters/CInlineFilter.php(59): DupakController->filterAccessControl()
+#4 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(126): CInlineFilter->filter()
+#5 /home/ata/Project/jabatan/framework/web/CController.php(283): CFilterChain->run()
+#6 /home/ata/Project/jabatan/framework/web/CController.php(257): DupakController->runActionWithFilters()
+#7 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): DupakController->run()
+#8 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController()
+#9 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#10 /home/ata/Project/jabatan/index.php(13): CWebApplication->run()
+REQUEST_URI=/jabatan/dupak/catatan.html
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:28:47 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:28:47 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:29:54 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:29:54 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:29:54 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /home/ata/Project/jabatan/framework/web/auth/CAccessControlFilter.php:153
+Stack trace:
+#0 /home/ata/Project/jabatan/framework/web/auth/CAccessControlFilter.php(115): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /home/ata/Project/jabatan/framework/web/filters/CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /home/ata/Project/jabatan/framework/web/CController.php(993): CFilter->filter(Object(CFilterChain))
+#3 /home/ata/Project/jabatan/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(126): CInlineFilter->filter(Object(CFilterChain))
+#5 /home/ata/Project/jabatan/framework/web/CController.php(283): CFilterChain->run()
+#6 /home/ata/Project/jabatan/framework/web/CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): CController->run('finish')
+#8 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController('dupak/finish')
+#9 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#10 /home/ata/Project/jabatan/index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/jabatan/dupak/finish.html
+2010/04/23 01:35:06 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:35:06 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:38:05 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:38:05 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:39:46 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:39:46 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:40:00 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:40:00 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:46:16 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (167)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:46:16 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (167)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:48:59 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (167)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:48:59 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (167)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:59:33 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (167)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 01:59:33 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (167)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:11:54 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (169)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:11:54 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (169)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:12:08 [error] [php] Undefined index: Penilai (/home/ata/Project/jabatan/protected/controllers/DupakController.php:158)
+Stack trace:
+#0 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(129): DupakController->runAction()
+#1 /home/ata/Project/jabatan/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#2 /home/ata/Project/jabatan/framework/web/CController.php(993): CAccessControlFilter->filter()
+#3 /home/ata/Project/jabatan/framework/web/filters/CInlineFilter.php(59): DupakController->filterAccessControl()
+#4 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(126): CInlineFilter->filter()
+#5 /home/ata/Project/jabatan/framework/web/CController.php(283): CFilterChain->run()
+#6 /home/ata/Project/jabatan/framework/web/CController.php(257): DupakController->runActionWithFilters()
+#7 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): DupakController->run()
+#8 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController()
+#9 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#10 /home/ata/Project/jabatan/index.php(13): CWebApplication->run()
+REQUEST_URI=/jabatan/dupak/catatan.html
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (158)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:12:33 [error] [php] Undefined index: Penilai (/home/ata/Project/jabatan/protected/controllers/DupakController.php:158)
+Stack trace:
+#0 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(129): DupakController->runAction()
+#1 /home/ata/Project/jabatan/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#2 /home/ata/Project/jabatan/framework/web/CController.php(993): CAccessControlFilter->filter()
+#3 /home/ata/Project/jabatan/framework/web/filters/CInlineFilter.php(59): DupakController->filterAccessControl()
+#4 /home/ata/Project/jabatan/framework/web/filters/CFilterChain.php(126): CInlineFilter->filter()
+#5 /home/ata/Project/jabatan/framework/web/CController.php(283): CFilterChain->run()
+#6 /home/ata/Project/jabatan/framework/web/CController.php(257): DupakController->runActionWithFilters()
+#7 /home/ata/Project/jabatan/framework/web/CWebApplication.php(320): DupakController->run()
+#8 /home/ata/Project/jabatan/framework/web/CWebApplication.php(120): CWebApplication->runController()
+#9 /home/ata/Project/jabatan/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#10 /home/ata/Project/jabatan/index.php(13): CWebApplication->run()
+REQUEST_URI=/jabatan/dupak/catatan.html
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (158)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:12:57 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (169)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:12:57 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (169)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:13:26 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (169)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:13:26 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (169)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:13:55 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:13:55 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:14:42 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:14:42 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:15:30 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:15:30 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:30 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:17:46 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:18:34 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:18:34 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:18:34 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:18:34 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:18:34 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:18:34 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:18:35 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:18:35 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (170)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:19:10 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:19:10 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:19:10 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:19:11 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:19:11 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:19:11 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:19:11 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (171)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:19:11 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (171)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:20:29 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:20:29 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:20:29 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:20:29 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:20:29 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:20:29 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (165)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:20:29 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (171)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:20:29 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (171)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:28:59 [warning] [application] Failed to set unsafe attribute "nama".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (173)
+in /home/ata/Project/jabatan/index.php (13)
+2010/04/23 02:28:59 [warning] [application] Failed to set unsafe attribute "nip".
+in /home/ata/Project/jabatan/protected/controllers/DupakController.php (173)
+in /home/ata/Project/jabatan/index.php (13)

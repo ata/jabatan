@@ -41,7 +41,7 @@ class DupakController extends Controller
                 'users'=>array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions'=>array('admin','delete','catatan','deleteCatatan'),
+                'actions'=>array('admin','delete','catatan','deleteCatatan','finish'),
                 'users'=>array('admin'),
             ),
             array('deny',  // deny all users
@@ -119,7 +119,7 @@ class DupakController extends Controller
             $_SESSION['KtiItem'] = array();
             $_SESSION['Lampiran'] = array();
         }
-            //$this->redirect(array('KtiItem/create'));
+            
             
         foreach($_SESSION['KtiItem'] as $item){
             $lampiran = new Lampiran;
@@ -127,44 +127,106 @@ class DupakController extends Controller
             $_SESSION['Lampiran'][] = clone $lampiran;
         }
         
+        
         if(isset($_POST['CatatanKetuaPenilai'])){
-            $catatanKetuaPenilai = new CatatanKetuaPenilai;
-            $catatanKetuaPenilai->attributes = $_POST['CatatanKetuaPenilai'];
-            $_SESSION['CatatanKetuaPenilai'][] = $catatanKetuaPenilai;
+            foreach($_POST['CatatanKetuaPenilai'] as $i => $catatan){
+                $catatanKetuaPenilai = new CatatanKetuaPenilai;
+                $catatanKetuaPenilai->attributes = $catatan;
+                $_SESSION['CatatanKetuaPenilai'][$i] = clone $catatanKetuaPenilai;
+            }
         }
         
         if(isset($_POST['CatatanPengusul'])){
-            $catatanPengusul = new CatatanPengusul;
-            $catatanPengusul->attributes = $_POST['CatatanPengusul'];
-            $_SESSION['CatatanPengusul'][] = $catatanPengusul;
+            foreach($_POST['CatatanPengusul'] as $i => $catatan){
+                $catatanPengusul = new CatatanPengusul;
+                $catatanPengusul->attributes = $catatan;
+                $_SESSION['CatatanPengusul'][$i] = clone $catatanPengusul;
+            }
+            
         }
         
         if(isset($_POST['CatatanTimPenilai'])){
-            $catatanTimPenilai = new CatatanTimPenilai;
-            $catatanTimPenilai->attributes = $_POST['CatatanTimPenilai'];
-            $_SESSION['CatatanTimPenilai'][] = $catatanTimPenilai;
+            foreach($_POST['CatatanTimPenilai'] as $i => $catatan){
+                $catatanTimPenilai = new CatatanTimPenilai;
+                $catatanTimPenilai->attributes = $catatan;
+                $_SESSION['CatatanTimPenilai'][$i] = clone $catatanTimPenilai;
+            }
         }
+        
+        //unset($_SESSION['Penilai']);
+        
+        
+        
+        if(isset($_POST['Penilai'])){
+            foreach($_POST['Penilai'] as $i => $p){
+                if($i === 'ketua') 
+                    continue;
+                $penilai = new Penilai;
+                //$penilai->attributes = $p;
+                $penilai->nama = $p['nama'];
+                $penilai->nip = $p['nip'];
+                $_SESSION['Penilai'][$i] = clone $penilai;
+                //var_dump($p);
+                //var_dump($penilai->attributes);
+            }
+            $penilai = new Penilai;
+            //$penilai->attributes = $_POST['Penilai']['ketua'];
+            $p = $_POST['Penilai']['ketua'];
+            $penilai->nama = $p['nama'];
+            $penilai->nip = $p['nip'];
+            $penilai->ketua = true;
+            $_SESSION['Penilai']['ketua'] = clone $penilai;
+            //var_dump($penilai->attributes);
+        }
+        
         
         if(!empty($_POST)){
-            $this->redirect(array('catatan'));
+            
+            //$this->redirect(array('finish'));
         }
         
-        $catatanKetuaPenilai = new CatatanKetuaPenilai;
-        $catatanPengusul = new CatatanPengusul;
-        $catatanTimPenilai = new CatatanTimPenilai;
+        //$catatanKetuaPenilai = new CatatanKetuaPenilai;
+        //$catatanPengusul = new CatatanPengusul;
+        //$catatanTimPenilai = new CatatanTimPenilai;
         
         $this->render('catatan',array(
             'listCatatanKetuaPenilai' => isset($_SESSION['CatatanKetuaPenilai'])?
-                $_SESSION['CatatanKetuaPenilai']:array(),
+                $_SESSION['CatatanKetuaPenilai']:array(
+                    new CatatanKetuaPenilai,
+                    new CatatanKetuaPenilai,
+                    new CatatanKetuaPenilai,
+                    new CatatanKetuaPenilai,
+                    new CatatanKetuaPenilai,
+                ),
             'listCatatanPengusul' => isset($_SESSION['CatatanPengusul'])?
-                $_SESSION['CatatanPengusul']:array(),
+                $_SESSION['CatatanPengusul']:array(
+                    new CatatanPengusul,
+                    new CatatanPengusul,
+                    new CatatanPengusul,
+                    new CatatanPengusul,
+                    new CatatanPengusul,
+                ),
             'listCatatanTimPenilai' => isset($_SESSION['CatatanTimPenilai'])?
-                $_SESSION['CatatanTimPenilai']:array(),
+                $_SESSION['CatatanTimPenilai']:array(
+                    new CatatanTimPenilai,
+                    new CatatanTimPenilai,
+                    new CatatanTimPenilai,
+                    new CatatanTimPenilai,
+                    new CatatanTimPenilai,
+                ),
+            'timPenilai' => isset($_SESSION['Penilai'])?
+                $_SESSION['Penilai']:array(
+                    new Penilai,
+                    new Penilai,
+                    new Penilai,
+                ),
+            'ketuaPenilai' => isset($_SESSION['Penilai']['ketua'])?
+                $_SESSION['Penilai']['ketua']:new Penilai,
             'listLampiran' => $_SESSION['Lampiran'],
             'dupak'=>$_SESSION['Dupak'],
-            'catatanKetuaPenilai' => $catatanKetuaPenilai,
-            'catatanPengusul' => $catatanPengusul,
-            'catatanTimPenilai' => $catatanTimPenilai
+            //'catatanKetuaPenilai' => $catatanKetuaPenilai,
+            //'catatanPengusul' => $catatanPengusul,
+            //'catatanTimPenilai' => $catatanTimPenilai
         ));
     }
     
@@ -184,6 +246,29 @@ class DupakController extends Controller
             }
         }
         $this->redirect(array('catatan'));
+    }
+    
+    
+    public function actionFinish()
+    {
+        //var_dump($_SESSION);
+        
+        //$kenaikanJabatan = $_SESSION['KenaikanJabatan'];
+        //$kenaikanJabatan->save();
+        
+        
+        
+        unset($_SESSION['KenaikanJabatan']);
+        unset($_SESSION['Kti']);
+        unset($_SESSION['KtiItem']);
+        unset($_SESSION['Dupak']);
+        unset($_SESSION['Nilai']);
+        unset($_SESSION['CatatanKetuaPenilai']);
+        unset($_SESSION['CatatanTimPenilai']);
+        unset($_SESSION['CatatanPengusul']);
+        unset($_SESSION['Lampiran']);
+        unset($_SESSION['Penilai']);
+        echo "Finish!";
     }
     
     /**
