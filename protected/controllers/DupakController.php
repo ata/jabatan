@@ -261,7 +261,11 @@ class DupakController extends Controller
     
     public function actionFinish()
     {
-        $this->render('finish',array('messages' => $_SESSION['Messages']));
+        
+        $messages = isset($_SESSION['Messages'])?$_SESSION['Messages']:array();
+        if (isset($_SESSION['Messages']))
+            unset($_SESSION['Messages']);
+        $this->render('finish',array('messages' => $messages));
     }
     
     protected function saveAll()
