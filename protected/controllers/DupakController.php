@@ -12,6 +12,9 @@ class DupakController extends Controller
      * @var CActiveRecord the currently loaded data model instance.
      */
     private $_model;
+    
+    public $errors = array();
+    public $messages = array();
 
     /**
      * @return array action filters
@@ -130,6 +133,8 @@ class DupakController extends Controller
         
         if(isset($_POST['CatatanKetuaPenilai'])){
             foreach($_POST['CatatanKetuaPenilai'] as $i => $catatan){
+                if(strlen(trim($catatan['deskripsi'])) == 0)
+                    continue;
                 $catatanKetuaPenilai = new CatatanKetuaPenilai;
                 $catatanKetuaPenilai->attributes = $catatan;
                 $_SESSION['CatatanKetuaPenilai'][$i] = clone $catatanKetuaPenilai;
@@ -138,6 +143,8 @@ class DupakController extends Controller
         
         if(isset($_POST['CatatanPengusul'])){
             foreach($_POST['CatatanPengusul'] as $i => $catatan){
+                if(strlen(trim($catatan['deskripsi'])) == 0)
+                    continue;
                 $catatanPengusul = new CatatanPengusul;
                 $catatanPengusul->attributes = $catatan;
                 $_SESSION['CatatanPengusul'][$i] = clone $catatanPengusul;
@@ -147,18 +154,21 @@ class DupakController extends Controller
         
         if(isset($_POST['CatatanTimPenilai'])){
             foreach($_POST['CatatanTimPenilai'] as $i => $catatan){
+                if(strlen(trim($catatan['deskripsi'])) == 0)
+                    continue;
                 $catatanTimPenilai = new CatatanTimPenilai;
                 $catatanTimPenilai->attributes = $catatan;
                 $_SESSION['CatatanTimPenilai'][$i] = clone $catatanTimPenilai;
             }
         }
-        
-        //unset($_SESSION['Penilai']);
+
         
         
         
         if(isset($_POST['Penilai'])){
             foreach($_POST['Penilai'] as $i => $p){
+                if(strlen(trim($p['nama'])) == 0 && strlen(trim($p['nip'])) == 0)
+                    continue;
                 if($i === 'ketua') 
                     continue;
                 $penilai = new Penilai;
@@ -181,8 +191,8 @@ class DupakController extends Controller
         
         
         if(!empty($_POST)){
-            
-            //$this->redirect(array('finish'));
+            $this->saveAll();
+            $this->redirect(array('finish'));
         }
         
         //$catatanKetuaPenilai = new CatatanKetuaPenilai;
@@ -251,10 +261,91 @@ class DupakController extends Controller
     
     public function actionFinish()
     {
-        //var_dump($_SESSION);
+        $this->render('finish',array('messages' => $_SESSION['Messages']));
+    }
+    
+    protected function saveAll()
+    {
+        $messages = array();
+        $errors = array();
         
-        //$kenaikanJabatan = $_SESSION['KenaikanJabatan'];
-        //$kenaikanJabatan->save();
+        $kenaikanJabatan = $_SESSION['KenaikanJabatan'];
+        if ($kenaikanJabatan->save()) 
+            $messages[] =  'kenaikan jabatan saved';
+        else
+            $errors[] = 'kenaikan jabatan not saved';
+            
+        $kti = new Kti;
+        $kti->kenaikan_jabatan_id = $kenaikanJabatan->id;
+        if ($kti->save())
+            $messages[] = 'kti saved';
+        else
+            $errors[] = 'kti not saved';
+        
+        foreach($_SESSION['KtiItem'] as $item){
+            $item->kti_id = $kti->id;
+            if($item->save())
+                $messages[] =  "kti item #{$item->id} saved";
+            else
+                $errors[] = 'kti item not saved';
+        }
+        
+        $dupak = $_SESSION['Dupak'];
+        $dupak->kenaikan_jabatan_id = $kenaikanJabatan->id;
+        if($dupak->save())
+            $messages[] = 'dupak saved';
+        else
+            $errors[] = 'dupak not saved';
+            
+        foreach($_SESSION['Nilai'] as $nilai){
+            $nilai->dupak_id = $dupak->id;
+            if($nilai->save())
+                $messages[] =  "nilai #{$nilai->id} saved!";
+            else
+                $errors[] = 'nilai not saved!';
+            
+        }
+        
+        foreach($_SESSION['CatatanKetuaPenilai'] as $catatan){
+            $catatan->dupak_id = $dupak->id;
+            if($catatan->save())
+                $messages[] = "catatan Ketua tim penilai #{$catatan->id} saved!";
+            else
+                $errors[] = 'catatan Ketua tim penilai not saved!';
+        }
+        
+        foreach($_SESSION['CatatanTimPenilai'] as $catatan){
+            $catatan->dupak_id = $dupak->id;
+            if($catatan->save())
+                $messages[] = "catatan tim penilai #{$catatan->id} saved!";
+            else
+                $errors[] = 'catatan tim penilai not saved!';
+        }
+        
+        foreach($_SESSION['CatatanPengusul'] as $catatan){
+            $catatan->dupak_id = $dupak->id;
+            if($catatan->save())
+                $messages[] = "catatan Pejabat Pengusul #{$catatan->id} saved!";
+            else
+                $errors[] = 'catatan Pejabat Pengusul tim penilai not saved!';
+        }
+        
+        foreach($_SESSION['Lampiran'] as $lampiran){
+            $lampiran->dupak_id = $dupak->id;
+            if($lampiran->save())
+                $messages[] = "Lampiran #{$lampiran->id} saved!";
+            else
+                $errors[] = "Lampiran not saved!";
+        }
+        
+        foreach($_SESSION['Penilai'] as $penilai){
+            $penilai->dupak_id = $dupak->id;
+            if($penilai->save())
+                $messages[] = "Penilai #{$penilai->id} saved!";
+            else
+                $errors[] = "Penilai not saved!";
+        }
+        
         
         
         
@@ -268,7 +359,11 @@ class DupakController extends Controller
         unset($_SESSION['CatatanPengusul']);
         unset($_SESSION['Lampiran']);
         unset($_SESSION['Penilai']);
-        echo "Finish!";
+        
+        $_SESSION['Errors'] = $errors;
+        $_SESSION['Messages'] = $messages;
+        
+        return !empty($errors);
     }
     
     /**
